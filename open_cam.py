@@ -12,8 +12,6 @@ class CamApp(App):
         layout = BoxLayout()
         layout.add_widget(self.img1)
         self.capture = cv2.VideoCapture(0)
-        # self.capture.get(CV_CAP_PROP_FRAME_WIDTH)
-        
         Clock.schedule_interval(self.update, 1.0/33.0)
         return layout
     def update(self, dt):
