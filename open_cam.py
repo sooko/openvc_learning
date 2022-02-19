@@ -12,6 +12,8 @@ class CamApp(App):
         layout = BoxLayout()
         layout.add_widget(self.img1)
         self.capture = cv2.VideoCapture(0)
+        # self.capture.get(CV_CAP_PROP_FRAME_WIDTH)
+        
         Clock.schedule_interval(self.update, 1.0/33.0)
         return layout
     def update(self, dt):
@@ -21,6 +23,12 @@ class CamApp(App):
         texture1 = Texture.create(size=(frame.shape[1], frame.shape[0]), colorfmt='bgr') 
         texture1.blit_buffer(buf, colorfmt='bgr', bufferfmt='ubyte')
         self.img1.texture = texture1
+
+    def get_image_size(self):
+        width=self.capture.get(3)
+        height=self.capture.get(4)
+        return (width,height)
+        
 
 if __name__ == '__main__':
     CamApp().run()
